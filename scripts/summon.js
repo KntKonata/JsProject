@@ -18,6 +18,10 @@
 		5* ->  1.5% [  98.50 - 100.00 ]
 */
 
+let basicScrolls = 10;
+let friendPoints = 90;
+let gems = 800;
+
 const priceOneBasic = 1;	//   1x Basic Scroll
 const priceOneFriend = 10;	//  10x Friends Point
 const priceOneHeroic = 100; // 100x Gems
@@ -25,6 +29,10 @@ const priceOneHeroic = 100; // 100x Gems
 const discountBasicSummon = 10  // 0% discount
 const discountFriendSummon = 20 // 0% discount
 const discountHeroicSummon = 30 // 0% discount
+
+let newCalculatedScrollPrice;
+let newCalculatedFriendPrice;
+let newCalculatedGemPrice;
 
 /*
 	MATHS FOR 10x PRICE
@@ -36,91 +44,133 @@ const discountHeroicSummon = 30 // 0% discount
 */
 
 function basicSummon(summon) {
-	for(let i=0; i<summon; i++){
-		let randomRarity = Math.floor(Math.random() * 10000) + 1;
-		let rarity = 0;
+	if(summon == 10){
+		newCalculatedScrollPrice = Math.floor((priceOneBasic*summon)/100*(100-discountBasicSummon));
+	} else {
+		newCalculatedScrollPrice = priceOneBasic;
+	}
+	
+	if(basicScrolls - newCalculatedScrollPrice >= 0) {
+		basicScrolls -= newCalculatedScrollPrice;
+		let basicScrollCounter = document.getElementById('scrollPointsCounter');
+			basicScrollCounter.innerHTML = basicScrolls + ' <img style="vertical-align: bottom" width="20px" src="./img/items/basicScroll.png"/>';
 		
-		if(randomRarity>=1 && randomRarity<=5600) {
-			rarity = 1;
-		} else if(randomRarity>5600 && randomRarity<9000) {
-			rarity = 2;
-		} else if(randomRarity>=9000 && randomRarity<=9850) {
-			rarity = 3;
-		} else if(randomRarity>9850 && randomRarity<=9995) {
-			rarity = 4;
-		} else if(randomRarity>=9995 && randomRarity<=10000) {
-			rarity = 5;
+		for(let i=0; i<summon; i++){
+			let randomRarity = Math.floor(Math.random() * 10000) + 1;
+			let rarity = 0;
+			
+			if(randomRarity>=1 && randomRarity<=5600) {
+				rarity = 1;
+			} else if(randomRarity>5600 && randomRarity<9000) {
+				rarity = 2;
+			} else if(randomRarity>=9000 && randomRarity<=9850) {
+				rarity = 3;
+			} else if(randomRarity>9850 && randomRarity<=9995) {
+				rarity = 4;
+			} else if(randomRarity>=9995 && randomRarity<=10000) {
+				rarity = 5;
+			}
+			
+			let randomType = Math.floor(Math.random() * characterList.length);
+			let result = [];
+			characterList[randomType].forEach(function(o){if (o.rarity == rarity) result.push(o);} );
+			
+			if(result.length>1){
+				let randomCharacter = Math.floor(Math.random() * result.length);
+				result = result[randomCharacter];
+			} else {
+				result = characterList[randomType][0];
+			}
+			
+			console.log('BASIC -- Congratulation ! You got ' + result.name + '! It\'s a ' + result.rarity + 'star monster!');
 		}
-		
-		let randomType = Math.floor(Math.random() * characterList.length);
-		let result = [];
-		characterList[randomType].forEach(function(o){if (o.rarity == rarity) result.push(o);} );
-		
-		if(result.length>1){
-			let randomCharacter = Math.floor(Math.random() * result.length);
-			result = result[randomCharacter];
-		} else {
-			result = characterList[randomType][0];
-		}
-		
-		console.log('BASIC -- Congratulation ! You got ' + result.name + '! It\'s a ' + result.rarity + 'star monster!');
+	} else {
+		console.log('Cannot summon! You do not have enough Basic Scrolls!');
 	}
 }
 
 function friendSummon(summon) {
-	for(let i=0; i<summon; i++){
-		let randomRarity = Math.floor(Math.random() * 10000) + 1;
-		let rarity = 0;
+	if(summon == 10){
+		newCalculatedFriendPrice = Math.floor((priceOneFriend*summon)/100*(100-discountFriendSummon));
+	} else {
+		newCalculatedFriendPrice = priceOneFriend;
+	}
+	
+	if(friendPoints - newCalculatedFriendPrice >= 0) {
+		friendPoints -= newCalculatedFriendPrice;
+		let friendPointsCounter = document.getElementById('friendPointsCounter');
+			friendPointsCounter.innerHTML = friendPoints + ' <img style="vertical-align: bottom" width="20px" src="./img/items/friendPoint.png"/>';
 		
-		if(randomRarity>=1 && randomRarity<=3200) {
-			rarity = 2;
-		} else if(randomRarity>3200 && randomRarity<8600) {
-			rarity = 3;
-		} else if(randomRarity>=8600 && randomRarity<=9920) {
-			rarity = 4;
-		} else if(randomRarity>9920 && randomRarity<=10000) {
-			rarity = 5;
+		for(let i=0; i<summon; i++){
+			let randomRarity = Math.floor(Math.random() * 10000) + 1;
+			let rarity = 0;
+			
+			if(randomRarity>=1 && randomRarity<=3200) {
+				rarity = 2;
+			} else if(randomRarity>3200 && randomRarity<8600) {
+				rarity = 3;
+			} else if(randomRarity>=8600 && randomRarity<=9920) {
+				rarity = 4;
+			} else if(randomRarity>9920 && randomRarity<=10000) {
+				rarity = 5;
+			}
+			
+			let randomType = Math.floor(Math.random() * characterList.length);
+			let result = [];
+			characterList[randomType].forEach(function(o){if (o.rarity == rarity) result.push(o);} );
+			
+			if(result.length>1){
+				let randomCharacter = Math.floor(Math.random() * result.length);
+				result = result[randomCharacter];
+			} else {
+				result = characterList[randomType][0];
+			}
+			
+			console.log('FRIEND -- Congratulation ! You got ' + result.name + '! It\'s a ' + result.rarity + 'star monster!');
 		}
-		
-		let randomType = Math.floor(Math.random() * characterList.length);
-		let result = [];
-		characterList[randomType].forEach(function(o){if (o.rarity == rarity) result.push(o);} );
-		
-		if(result.length>1){
-			let randomCharacter = Math.floor(Math.random() * result.length);
-			result = result[randomCharacter];
-		} else {
-			result = characterList[randomType][0];
-		}
-		
-		console.log('FRIEND -- Congratulation ! You got ' + result.name + '! It\'s a ' + result.rarity + 'star monster!');
+	} else {
+		console.log('Cannot summon! You do not have enough Friend Points!');
 	}
 }
 
 function heroicSummon(summon) {
-	for(let i=0; i<summon; i++){
-		let randomRarity = Math.floor(Math.random() * 10000) + 1;
-		let rarity = 0;
-		
-		if(randomRarity>=1 && randomRarity<=7850) {
-			rarity = 3;
-		} else if(randomRarity>7850 && randomRarity<9850) {
-			rarity = 4;
-		} else if(randomRarity>=9850 && randomRarity<=10000) {
-			rarity = 5;
+	if(summon == 10){
+		newCalculatedGemPrice = Math.floor((priceOneHeroic*summon)/100*(100-discountHeroicSummon));
+	} else {
+		newCalculatedGemPrice = priceOneHeroic;
+	}
+	
+	if(gems - newCalculatedGemPrice >= 0) {
+		gems -= newCalculatedGemPrice;
+		let gemsPointsCounter = document.getElementById('gemsPointsCounter');
+			gemsPointsCounter.innerHTML = gems + ' <img style="vertical-align: bottom" width="20px" src="./img/items/gems.png"/>';
+
+		for(let i=0; i<summon; i++){
+			let randomRarity = Math.floor(Math.random() * 10000) + 1;
+			let rarity = 0;
+			
+			if(randomRarity>=1 && randomRarity<=7850) {
+				rarity = 3;
+			} else if(randomRarity>7850 && randomRarity<9850) {
+				rarity = 4;
+			} else if(randomRarity>=9850 && randomRarity<=10000) {
+				rarity = 5;
+			}
+			
+			let randomType = Math.floor(Math.random() * characterList.length);
+			let result = [];
+			characterList[randomType].forEach(function(o){if (o.rarity == rarity) result.push(o);} );
+			
+			if(result.length>1){
+				let randomCharacter = Math.floor(Math.random() * result.length);
+				result = result[randomCharacter];
+			} else {
+				result = characterList[randomType][0];
+			}
+			
+			console.log('HEROIC -- Congratulation ! You got ' + result.name + '! It\'s a ' + result.rarity + 'star monster!');
 		}
-		
-		let randomType = Math.floor(Math.random() * characterList.length);
-		let result = [];
-		characterList[randomType].forEach(function(o){if (o.rarity == rarity) result.push(o);} );
-		
-		if(result.length>1){
-			let randomCharacter = Math.floor(Math.random() * result.length);
-			result = result[randomCharacter];
-		} else {
-			result = characterList[randomType][0];
-		}
-		
-		console.log('HEROIC -- Congratulation ! You got ' + result.name + '! It\'s a ' + result.rarity + 'star monster!');
+	} else {
+		console.log('Cannot summon! You do not have enough Gems!');
 	}
 }

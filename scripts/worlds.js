@@ -61,7 +61,8 @@ function openSummon() {
 			columnLeft.appendChild(columnLeftTitle);
 		let columnLeftPoints = document.createElement('p');
 			columnLeftPoints.setAttribute('class', 'points');
-			columnLeftPoints.innerHTML = '99 ' + scrollImage;
+			columnLeftPoints.setAttribute('id', 'scrollPointsCounter');
+			columnLeftPoints.innerHTML = basicScrolls + ' ' + scrollImage;
 			columnLeft.appendChild(columnLeftPoints);
 		canvas.appendChild(columnLeft);
 		let summonBasicOneButton = document.createElement('button');
@@ -85,8 +86,9 @@ function openSummon() {
 			columnMiddleTitle.innerText = 'Heroic Summon';
 			columnMiddle.appendChild(columnMiddleTitle);
 		let columnMiddlePoints = document.createElement('p');
-			columnMiddlePoints.innerHTML = '999,999 ' + gemImage;
+			columnMiddlePoints.innerHTML = gems + ' ' + gemImage;
 			columnMiddlePoints.setAttribute('class', 'points');
+			columnMiddlePoints.setAttribute('id', 'gemsPointsCounter');
 			columnMiddle.appendChild(columnMiddlePoints);
 		canvas.appendChild(columnMiddle);
 		let summonHeroicOneButton = document.createElement('button');
@@ -110,8 +112,9 @@ function openSummon() {
 			columnRightTitle.innerText = 'Friend Summon';
 			columnRight.appendChild(columnRightTitle);
 		let columnRightPoints = document.createElement('p');
-			columnRightPoints.innerHTML = '999 ' + friendImage;
+			columnRightPoints.innerHTML = friendPoints + ' ' + friendImage;
 			columnRightPoints.setAttribute('class', 'points');
+			columnRightPoints.setAttribute('id', 'friendPointsCounter');
 			columnRight.appendChild(columnRightPoints);
 		canvas.appendChild(columnRight);
 		let summonFriendOneButton = document.createElement('button');
@@ -128,10 +131,6 @@ function openSummon() {
 			}
 		columnRight.appendChild(summonFriendOneButton);
 		columnRight.appendChild(summonFriendTenButton);
-	
-	
-	
-	
 }
 
 function openArena() {
