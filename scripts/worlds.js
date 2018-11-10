@@ -57,7 +57,7 @@ function openSummon() {
 	let columnLeft = document.createElement('div');
 		columnLeft.setAttribute('class', 'column');
 		let columnLeftTitle = document.createElement('p');
-			columnLeftTitle.innerText = 'Basic Summon';
+			columnLeftTitle.innerText = langBasicSummon;
 			columnLeft.appendChild(columnLeftTitle);
 		let columnLeftPoints = document.createElement('p');
 			columnLeftPoints.setAttribute('class', 'points');
@@ -83,7 +83,7 @@ function openSummon() {
 	let columnMiddle = document.createElement('div');
 		columnMiddle.setAttribute('class', 'column');
 		let columnMiddleTitle = document.createElement('p');
-			columnMiddleTitle.innerText = 'Heroic Summon';
+			columnMiddleTitle.innerText = langHeroicSummon;
 			columnMiddle.appendChild(columnMiddleTitle);
 		let columnMiddlePoints = document.createElement('p');
 			columnMiddlePoints.innerHTML = gems + ' ' + gemImage;
@@ -109,7 +109,7 @@ function openSummon() {
 	let columnRight = document.createElement('div');
 		columnRight.setAttribute('class', 'column');
 		let columnRightTitle = document.createElement('p');
-			columnRightTitle.innerText = 'Friend Summon';
+			columnRightTitle.innerText = langFriendSummon;
 			columnRight.appendChild(columnRightTitle);
 		let columnRightPoints = document.createElement('p');
 			columnRightPoints.innerHTML = friendPoints + ' ' + friendImage;

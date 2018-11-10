@@ -3,6 +3,4 @@
 
 window.onload= function() {
 	loadWorld();
-	
-	console.log(characterList[0][0].name);
 }

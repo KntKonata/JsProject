@@ -82,10 +82,10 @@ function basicSummon(summon) {
 				result = characterList[randomType][0];
 			}
 			
-			console.log('BASIC -- Congratulation ! You got ' + result.name + '! It\'s a ' + result.rarity + 'star monster!');
+			console.log(langSummonText1 + result.name + langSummonText2 + result.rarity + langSummonText3);
 		}
 	} else {
-		console.log('Cannot summon! You do not have enough Basic Scrolls!');
+		console.log(langBasicSummonFail);
 	}
 }
 
@@ -126,10 +126,10 @@ function friendSummon(summon) {
 				result = characterList[randomType][0];
 			}
 			
-			console.log('FRIEND -- Congratulation ! You got ' + result.name + '! It\'s a ' + result.rarity + 'star monster!');
+			console.log(langSummonText1 + result.name + langSummonText2 + result.rarity + langSummonText3);
 		}
 	} else {
-		console.log('Cannot summon! You do not have enough Friend Points!');
+		console.log(langFriendSummonFail);
 	}
 }
 
@@ -168,9 +168,9 @@ function heroicSummon(summon) {
 				result = characterList[randomType][0];
 			}
 			
-			console.log('HEROIC -- Congratulation ! You got ' + result.name + '! It\'s a ' + result.rarity + 'star monster!');
+			console.log(langSummonText1 + result.name + langSummonText2 + result.rarity + langSummonText3);
 		}
 	} else {
-		console.log('Cannot summon! You do not have enough Gems!');
+		console.log(langHeroicSummonFail);
 	}
 }
